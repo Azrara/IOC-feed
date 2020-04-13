@@ -8,24 +8,21 @@ def _sources():
     return content
 
 def _extractIP(source):
-    proxy = {"https":"http://proxygin.melinda.local:8080","http":" http://proxygin.melinda.local:8080"}
-    req = requests.get(source,proxies=proxy)
+    req = requests.get(source)
     result = req.content
     resultDecoded = result.decode("utf-8")
     finalResult = re.findall(r"\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b", resultDecoded)
     return finalResult
 
 def _extratctUrl(source):
-    proxy = {"https":"http://proxygin.melinda.local:8080","http":" http://proxygin.melinda.alocal:8080"}
-    req = requests.get(source,proxies=proxy)
+    req = requests.get(source)
     result = req.content
     resultDecoded = result.decode("utf-8")
     finalResult = re.findall('http?://(?:[-\w.]|(?:%[\da-fA-F]{2}))+', resultDecoded)
     return finalResult
 
 def _extractHash(source):
-    proxy = {"https":"http://proxygin.melinda.local:8080","http":" http://proxygin.melinda.local:8080"}
-    req = requests.get(source,proxies=proxy)
+    req = requests.get(source)
     result = req.content
     resultDecoded = result.decode("utf-8")
     finalResult= re.findall(r"([a-fA-F\d]{32})", resultDecoded)
